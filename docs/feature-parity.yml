@@ -1,0 +1,166 @@
+# Feature parity ledger. Machine-readable companion to implementation-status.md.
+# States are independent: implemented does not imply verified, and verified does not
+# imply shippable for licensing reasons.
+schema: 1
+updated_at: '2026-11-24'
+build: 0.1.0
+
+features:
+  - id: CH-01
+    name: Candlesticks and OHLC bars
+    milestone: M1
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-CHART-01]
+    implementation_paths: [src/engine/chart.ts, src/data/providers.ts]
+    limitations: [no hollow candles, no style presets]
+
+  - id: CH-02
+    name: Line and area charts
+    milestone: M1
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-CHART-01]
+    implementation_paths: [src/engine/chart.ts]
+    limitations: [HLC area, baseline, step and columns not built]
+
+  - id: CH-17
+    name: Interval switching
+    milestone: M1
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-DATA-04]
+    implementation_paths: [src/domain/instruments.ts]
+    limitations: [no 4H, no custom or tick intervals]
+
+  - id: CH-18
+    name: Scales
+    milestone: M2
+    implementation_status: partial
+    verification_status: not_run
+    release_status: hidden
+    acceptance_ids: [AT-CHART-01]
+    limitations: [log, percentage and indexed scales not built]
+
+  - id: CH-22
+    name: Multi-pane indicators
+    milestone: M2
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-CHART-04]
+    implementation_paths: [src/engine/chart.ts, src/engine/indicators.ts]
+    limitations: [panes cannot be reordered or resized by drag]
+
+  - id: CH-31
+    name: Screen-reader data view
+    milestone: M1
+    implementation_status: blocked
+    verification_status: not_run
+    release_status: hidden
+    acceptance_ids: [AT-A11Y-01]
+    external_blockers: [GAP-01]
+    limitations: [requires a paginated OHLC table alternative]
+
+  - id: IND-01
+    name: Validated indicator catalogue
+    milestone: M1
+    implementation_status: partial
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-CHART-04]
+    implementation_paths: [src/engine/indicators.ts, tests/indicators.test.ts]
+    limitations: [8 of the target families, default parameters only, no parameter editor]
+
+  - id: DR-01
+    name: Core drawing tools
+    milestone: M1
+    implementation_status: partial
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-DRAW-01]
+    implementation_paths: [src/engine/drawings.ts]
+    limitations: [7 of 14 tool families]
+
+  - id: DR-13
+    name: Undo, redo and delete
+    milestone: M1
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-DRAW-01]
+    implementation_paths: [src/app/App.tsx, src/engine/drawings.ts]
+    limitations: [history is per instrument and not persisted across reloads]
+
+  - id: WSP-01
+    name: Local workspace persistence
+    milestone: M1
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-SYNC-01]
+    implementation_paths: [src/app/persist.ts, tests/persist.test.ts]
+    limitations: [no cloud sync]
+
+  - id: WSP-02
+    name: Legacy import and workspace export
+    milestone: M1
+    implementation_status: implemented
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-SYNC-03, AT-SYNC-04]
+    implementation_paths: [src/app/persist.ts, tests/persist.test.ts]
+    limitations: [chartdesk.layouts.v1 is reported but not imported]
+
+  - id: WAT-01
+    name: Watchlist
+    milestone: M1
+    implementation_status: partial
+    verification_status: passing
+    release_status: beta
+    acceptance_ids: [AT-DATA-01]
+    implementation_paths: [src/ui/SidePanel.tsx, src/data/providers.ts]
+    limitations: [single list, no reordering, no import or export]
+
+  - id: ALT-01
+    name: Server-side alerts
+    milestone: M3
+    implementation_status: blocked
+    verification_status: not_run
+    release_status: hidden
+    acceptance_ids: [AT-ALERT-01, AT-ALERT-02]
+    external_blockers: [BLOCK-HOST-001]
+    limitations: [needs a durable worker; a browser timer is not acceptable]
+
+  - id: RPL-01
+    name: Replay
+    milestone: M4
+    implementation_status: planned
+    verification_status: not_run
+    release_status: hidden
+    acceptance_ids: [AT-REPLAY-01]
+
+  - id: BKT-01
+    name: Backtesting
+    milestone: M4
+    implementation_status: planned
+    verification_status: not_run
+    release_status: hidden
+    acceptance_ids: [AT-BACKTEST-01]
+
+  - id: TRD-03
+    name: Live broker execution
+    milestone: M7
+    implementation_status: blocked
+    verification_status: not_run
+    release_status: hidden
+    acceptance_ids: [AT-BROKER-01]
+    external_blockers: [BLOCK-LEGAL-001, BLOCK-BROKER-001]
+
+release_gate: >
+  A feature may only leave hidden when its acceptance tests pass in the deployed environment and
+  its data rights are recorded in providers-and-rights.yml. No feature in this build claims parity
+  with any competitor.

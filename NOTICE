@@ -1,0 +1,18 @@
+ChartUnlocked
+Copyright (c) 2026 Philip Uvietesivwi
+
+This product includes Lightweight Charts, version 5.3.0.
+
+Lightweight Charts
+Copyright (c) 2024 TradingView, Inc. https://www.tradingview.com/
+Licensed under the Apache License, Version 2.0.
+https://github.com/tradingview/lightweight-charts/blob/master/LICENSE
+
+The application is licensed under the MIT License (see LICENSE).
+
+Market data is not covered by these licences. Crypto prices come from Binance public endpoints and
+non-crypto prices from Yahoo Finance through a text relay; both remain subject to their own terms.
+TradingView's public scanner is used to display a labelled reference value only. See
+docs/providers-and-rights.yml before any public or commercial deployment.
+
+ChartUnlocked is not affiliated with, endorsed by, or certified by TradingView, Binance or Yahoo.

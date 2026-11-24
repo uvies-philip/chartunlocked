@@ -1,0 +1,111 @@
+# Provider rights registry. Unknown rights are treated as denied.
+# This build is a personal analysis tool; it does not redistribute licensed data.
+schema: 1
+updated_at: '2026-11-24'
+
+providers:
+  - provider_id: binance_public
+    approval_status: public_endpoints
+    agreement_reference: https://www.binance.com/en/terms
+    verified_at: '2026-11-24'
+    supported_regions: [global]
+    asset_classes: [crypto_spot]
+    rights:
+      public_display: true
+      authenticated_display: true
+      non_display_calculation: true
+      server_alerts: false
+      historical_storage: false
+      replay_download: false
+      backtesting: false
+      redistribution: false
+      user_export: false
+      ai_processing: false
+      derived_data_distribution: false
+    limits:
+      requests_per_minute: 1200
+      simultaneous_streams: 1024
+      historical_depth: null
+      retention_days: null
+    attribution_text: null
+    production_enabled: true
+    notes: Public market data endpoints, weight based limits, no key required.
+
+  - provider_id: yahoo_finance_via_relay
+    approval_status: unverified
+    agreement_reference: null
+    verified_at: null
+    supported_regions: [global]
+    asset_classes: [fx, index, equity, future]
+    rights:
+      public_display: unknown
+      non_display_calculation: unknown
+      server_alerts: false
+      historical_storage: false
+      redistribution: false
+      user_export: false
+      ai_processing: false
+    limits:
+      requests_per_minute: 20
+      simultaneous_streams: 0
+      historical_depth: varies_by_symbol
+    attribution_text: null
+    production_enabled: true
+    notes: >
+      Read through r.jina.ai because Yahoo sends no CORS headers. Rights are not established.
+      Acceptable for a personal tool, not acceptable as the basis of a commercial service without
+      a reviewed agreement. Replace before any paid or public launch.
+
+  - provider_id: tradingview_scanner_reference
+    approval_status: unverified
+    agreement_reference: https://www.tradingview.com/policies/
+    verified_at: '2026-11-24'
+    supported_regions: [global]
+    rights:
+      public_display: unknown
+      redistribution: false
+      derived_data_distribution: false
+      ai_processing: false
+      user_export: false
+    limits:
+      requests_per_minute: 20
+    production_enabled: true
+    notes: >
+      Used only to show a labelled comparison value in the instrument panel. Never merged into
+      candles, never used for alerts or calculations. Public reachability and permissive CORS do
+      not establish redistribution rights.
+
+  - provider_id: fixture_demo
+    approval_status: generated
+    agreement_reference: null
+    verified_at: '2026-11-24'
+    supported_regions: [global]
+    rights:
+      public_display: true
+      redistribution: true
+      server_alerts: true
+      backtesting: true
+    limits: {}
+    production_enabled: true
+    notes: Deterministic synthetic series generated in the browser, always labelled DEMO DATA.
+
+  - provider_id: ngx_approved_feed
+    approval_status: not_contracted
+    agreement_reference: null
+    verified_at: null
+    supported_regions: [NG]
+    asset_classes: [equity]
+    rights:
+      public_display: false
+      redistribution: false
+    limits: {}
+    production_enabled: false
+    notes: >
+      NGX states that distribution of real-time data requires a distribution licence. No claim of
+      Nigerian market coverage is made until an agreement exists.
+
+rules_enforced_in_code:
+  - A provider quote is never written into another provider's bars.
+  - Missing volume is null, never zero, and volume-dependent indicators skip those bars.
+  - The reference quote appears in one labelled place with the difference shown.
+  - Demo data is labelled in both the legend and the status bar.
