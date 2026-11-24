@@ -350,6 +350,13 @@ export default function App() {
       { id: 'fit', label: 'Fit chart to screen', shortcut: 'F', onSelect: () => engineRef.current?.fitContent() },
       { id: 'panel', label: 'Toggle side panel', shortcut: 'P', onSelect: () => setWs((c) => ({ ...c, rightOpen: !c.rightOpen })) },
       { id: 'theme', label: 'Toggle theme', shortcut: 'T', onSelect: () => setWs((c) => ({ ...c, theme: c.theme === 'dark' ? 'light' : 'dark' })) },
+      { id: 'sep0', label: '', separator: true },
+      ...KINDS.map((item) => ({
+        id: `kind-${item.id}`,
+        label: item.label,
+        checked: item.id === wsRef.current.chartKind,
+        onSelect: () => setWs((c) => ({ ...c, chartKind: item.id })),
+      })),
       { id: 'sep1', label: '', separator: true },
       { id: 'clear', label: 'Clear drawings on this instrument', onSelect: clearDrawings },
       { id: 'export', label: 'Export workspace JSON', onSelect: exportWorkspace },

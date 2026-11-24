@@ -877,6 +877,10 @@ html[data-theme='light'] .legend {
   .tb-label {
     display: none;
   }
+  /* The interval is a primary control; keep its value readable on small screens. */
+  .tb-label.tf-value {
+    display: inline;
+  }
   .brand-name {
     display: none;
   }
@@ -884,17 +888,56 @@ html[data-theme='light'] .legend {
 
 @media (max-width: 640px) {
   :root {
-    --cu-toolrail: 0px;
+    --cu-toolrail: 38px;
     --cu-panel-width: 0px;
   }
   .toolrail {
-    display: none;
+    padding: 4px 0;
   }
-  .stage {
-    grid-column: 1 / -1;
+  .rail-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .rail-sep {
+    width: 16px;
+    margin: 3px 0;
   }
   .statusbar .sb-hide-sm {
     display: none;
+  }
+  .sym-btn {
+    gap: 6px;
+    padding: 0 4px;
+    overflow: hidden;
+  }
+  .sym-text {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .sym-btn .caret {
+    display: none;
+  }
+  /* Reclaim width: these all remain reachable from the overflow menu. */
+  .brand,
+  .tb-divider,
+  .fit-btn,
+  .kind-btn,
+  .theme-btn {
+    display: none;
+  }
+  .sym-name {
+    max-width: 84px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .legend-row {
+    gap: 5px;
+  }
+  .legend-title {
+    font-size: 12px;
+  }
+  .legend-price {
+    font-size: 12.5px;
   }
   .legend {
     right: 76px;

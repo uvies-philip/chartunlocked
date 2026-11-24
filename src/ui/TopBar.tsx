@@ -61,14 +61,14 @@ export function TopBar({
         </span>
       </button>
 
-      <button className="tb-btn" onClick={(e) => onIntervals(e.currentTarget)} title="Interval" aria-haspopup="menu">
-        <span className="tb-label num">{interval.label}</span>
+      <button className="tb-btn" onClick={(e) => onIntervals(e.currentTarget)} title="Interval" aria-haspopup="menu" aria-label={`Interval ${interval.label}`}>
+        <span className="tb-label tf-value num">{interval.label}</span>
         <span className="caret">
           <Icon name="chevronDown" size={12} />
         </span>
       </button>
 
-      <button className="tb-btn" onClick={(e) => onKinds(e.currentTarget)} title="Chart type" aria-haspopup="menu">
+      <button className="tb-btn kind-btn" onClick={(e) => onKinds(e.currentTarget)} title="Chart type" aria-haspopup="menu">
         <Icon name="candle" size={15} />
         <span className="tb-label">{kind === 'candles' ? 'Candles' : kind === 'bars' ? 'Bars' : kind === 'line' ? 'Line' : 'Area'}</span>
         <span className="caret">
@@ -84,7 +84,7 @@ export function TopBar({
       <div className="tb-spacer" />
 
       <div className="tb-actions">
-        <button className="tb-btn icon-only" onClick={onFit} title="Fit chart to screen" aria-label="Fit chart">
+        <button className="tb-btn icon-only fit-btn" onClick={onFit} title="Fit chart to screen" aria-label="Fit chart">
           <Icon name="fit" size={15} />
         </button>
         <button
@@ -96,7 +96,7 @@ export function TopBar({
         >
           <Icon name="panel" size={15} />
         </button>
-        <button className="tb-btn icon-only" onClick={onToggleTheme} title="Light / dark theme" aria-label="Toggle theme">
+        <button className="tb-btn icon-only theme-btn" onClick={onToggleTheme} title="Light / dark theme" aria-label="Toggle theme">
           <Icon name={theme === 'dark' ? 'moon' : 'sun'} size={15} />
         </button>
         <button className="tb-btn icon-only" onClick={(e) => onMenu(e.currentTarget)} title="More" aria-label="More actions" aria-haspopup="menu">
